@@ -1,0 +1,10 @@
+version: '2.3'
+
+services:
+  gitlab-runner:
+    container_name: gitlab-runner
+    image: klud/gitlab-runner
+    restart: always
+    volumes:
+      - $HOME/docker-data/gitlab-runner/.runner:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock

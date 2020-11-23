@@ -1,0 +1,28 @@
+version: '2'
+
+volumes:
+  nextcloud:
+  nextcloud_db:
+
+services:
+  nextcloud_db:
+    image: yobasystems/alpine-mariadb:latest
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    restart: always
+    volumes:
+      - nextcloud_db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+
+  app:
+    image: nextcloud
+    ports:
+      - 7070:80
+    links:
+      - nextcloud_db
+    volumes:
+      - $HOME/docker-data/nextcloud:/var/www/html
+    restart: always
