@@ -24,5 +24,5 @@ services:
     links:
       - nextcloud_db
     volumes:
-      - $HOME/docker-data/nextcloud:/var/www/html
-    restart: always
+      - /home/username/docker-data/nextcloud:/var/www/html
+    restart: unless-stopped

@@ -6,7 +6,7 @@ services:
     image: statping/statping:latest
     restart: always
     volumes:
-      - $HOME/docker-data/statping:/app
+      - /home/username/docker-data/statping:/app
     environment:
       DB_CONN: sqlite
     ports:

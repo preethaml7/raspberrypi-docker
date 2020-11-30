@@ -4,7 +4,7 @@ services:
   gitlab-runner:
     container_name: gitlab-runner
     image: klud/gitlab-runner
-    restart: always
+    restart: unless-stopped
     volumes:
-      - $HOME/docker-data/gitlab-runner/.runner:/etc/gitlab-runner
+      - /home/username/docker-data/gitlab-runner/.runner:/etc/gitlab-runner
       - /var/run/docker.sock:/var/run/docker.sock

@@ -5,7 +5,7 @@ services:
     image: bitwardenrs/server:latest
     container_name: bitwardenrs
     volumes:
-      - $HOME/docker-data/bitwardenrs:/data/
+      - /home/username/docker-data/bitwardenrs:/data/
     ports:
       - 8100:80
     restart: unless-stopped

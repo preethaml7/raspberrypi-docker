@@ -1,0 +1,25 @@
+---
+version: "2.1"
+services:
+  wireguard:
+    image: ghcr.io/linuxserver/wireguard
+    container_name: wireguard
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - TZ=America/Chicago
+      - SERVERURL=wireguard.domain.org
+      - SERVERPORT=51820
+      - PEERS=iPhone,MacBook-Pro,MacBook-Air
+      - PEERDNS=1.1.1.1
+      - INTERNAL_SUBNET=10.13.13.0
+      - ALLOWEDIPS=0.0.0.0/0
+    volumes:
+      - /home/username/docker-data/wireguard:/config
+      - /lib/modules:/lib/modules
+    ports:
+      - 51820:51820/udp
+    restart: unless-stopped
